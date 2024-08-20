@@ -1,4 +1,4 @@
-package br.senai.sp.jandira.preco
+package br.senai.sp.jandira.livraria
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

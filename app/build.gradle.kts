@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "br.senai.sp.jandira.preco"
+    namespace = "br.senai.sp.jandira.livraria"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "br.senai.sp.jandira.preco"
+        applicationId = "br.senai.sp.jandira.livraria"
         minSdk = 29
         targetSdk = 34
         versionCode = 1

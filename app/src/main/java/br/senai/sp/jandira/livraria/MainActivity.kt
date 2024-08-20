@@ -1,4 +1,4 @@
-package br.senai.sp.jandira.preco
+package br.senai.sp.jandira.livraria
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -10,9 +10,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import br.senai.sp.jandira.preco.screens.ListaLivrosScreen
-import br.senai.sp.jandira.preco.screens.NovoLivroScreen
-import br.senai.sp.jandira.preco.ui.theme.PreçoTheme
+import br.senai.sp.jandira.livraria.screens.ListaLivrosScreen
+import br.senai.sp.jandira.livraria.screens.NovoLivroScreen
+import br.senai.sp.jandira.livraria.ui.theme.PreçoTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

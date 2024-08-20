@@ -1,4 +1,4 @@
-package br.senai.sp.jandira.preco
+package br.senai.sp.jandira.livraria
 
 import org.junit.Test
 

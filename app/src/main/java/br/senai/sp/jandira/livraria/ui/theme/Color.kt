@@ -1,4 +1,4 @@
-package br.senai.sp.jandira.preco.ui.theme
+package br.senai.sp.jandira.livraria.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
