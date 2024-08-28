@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.CutCornerShape
 import androidx.compose.material.icons.Icons
@@ -22,17 +23,30 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import br.senai.sp.jandira.livraria.model.Livro
+import br.senai.sp.jandira.livraria.repositorio.LivroRepositorio
 
 @Composable
 fun ListaLivrosScreen(modifier: Modifier = Modifier, navegador: NavHostController?) {
+
+    val context = LocalContext.current
+    val livroRepositorio = LivroRepositorio(context)
+
+    val listaLivros = remember {
+        mutableStateOf(livroRepositorio.listarLivros())
+    }
+
 
     Scaffold(
         topBar = {
@@ -56,7 +70,7 @@ fun ListaLivrosScreen(modifier: Modifier = Modifier, navegador: NavHostControlle
             Column(modifier = Modifier.padding(it)) {
 
                 LazyColumn {
-                    items(3){
+                    items(listaLivros.value){ livro->
                         Card(
                             modifier = Modifier
                                 .fillMaxWidth()
@@ -81,18 +95,18 @@ fun ListaLivrosScreen(modifier: Modifier = Modifier, navegador: NavHostControlle
                                 ) {
                                     Column {
                                         Text(
-                                            text = "Dom Casmurro",
+                                            text = livro.titulo,
                                             fontSize = 22.sp,
                                             fontWeight = FontWeight.Bold
                                         )
                                         Spacer(modifier = Modifier.height(4.dp))
                                         Text(
-                                            text = "Machado de Assis",
+                                            text = livro.autor,
                                             fontSize = 16.sp
                                         )
                                     }
                                     Text(
-                                        text = "$12.99",
+                                        text = "R$${livro.valor}",
                                         fontSize = 20.sp,
                                         fontWeight = FontWeight.Bold
                                     )

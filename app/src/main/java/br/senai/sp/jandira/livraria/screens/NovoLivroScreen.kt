@@ -1,5 +1,6 @@
 package br.senai.sp.jandira.livraria.screens
 
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -32,6 +33,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
@@ -40,6 +42,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Popup
 import androidx.navigation.NavHostController
+import br.senai.sp.jandira.livraria.model.Livro
+import br.senai.sp.jandira.livraria.repositorio.LivroRepositorio
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -48,6 +52,9 @@ import java.util.TimeZone
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NovoLivroScreen(modifier: Modifier = Modifier, navegador: NavHostController?) {
+
+    val contexto = LocalContext.current
+    val livroRepositorio = LivroRepositorio(contexto)
 
     val titulo = remember {
         mutableStateOf("")
@@ -214,7 +221,19 @@ fun NovoLivroScreen(modifier: Modifier = Modifier, navegador: NavHostController?
                     }
                     Spacer(modifier = Modifier.height(32.dp))
                     Button(
-                        onClick = { /*TODO*/ },
+                        onClick = {
+                            val livro = Livro(
+                                titulo = titulo.value,
+                                autor =  autor.value,
+                                dataPublicacao =  dataSelecionada,
+                                valor =  valor.value.toDouble(),
+                                usado = isUsado.value
+                            )
+                            val id = livroRepositorio.salvar(livro);
+
+                            Toast.makeText(contexto, "O livro foi criado com o ID: $id", Toast.LENGTH_LONG).show()
+                            navegador?.navigate("listaLivros")
+                        },
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(48.dp),

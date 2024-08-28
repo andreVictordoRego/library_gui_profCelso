@@ -16,7 +16,5 @@ interface LivroDAO {
     fun listarLivros(): List<Livro>
 
     @Update
-    fun atualizar(livro: Livro): Long
-
-
+    fun atualizar(livro: Livro): Int
 }
