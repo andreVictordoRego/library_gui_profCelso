@@ -56,7 +56,7 @@ fun ListaLivrosScreen(modifier: Modifier = Modifier, navegador: NavHostControlle
             Column(modifier = Modifier.padding(it)) {
 
                 LazyColumn {
-                    items(5){
+                    items(3){
                         Card(
                             modifier = Modifier
                                 .fillMaxWidth()
